@@ -8,13 +8,14 @@ const wangymNewsRoutes = require('./routes/wangym_newsRoutes');
 const wangymGalleryRoutes = require('./routes/wangym_galleryRoutes');
 const wangymDatabaseRoutes = require('./routes/wangym_databaseRoutes');
 const wangymChatRoutes = require('./routes/wangym_chatRoutes');
+const wangymKbRoutes = require('./routes/wangym_kbRoutes');
 
 const wangymApp = express();
 const wangymPort = 8201;
 
 // 所有跨域访问均放行
 wangymApp.use(cors());
-wangymApp.use(express.json());
+wangymApp.use(express.json({ limit: '12mb' }));
 wangymApp.use(express.urlencoded({ extended: true }));
 
 // 业务接口（统一 /api/ 前缀）
@@ -22,6 +23,7 @@ wangymApp.use('/api/news', wangymNewsRoutes);
 wangymApp.use('/api/gallery', wangymGalleryRoutes);
 wangymApp.use('/api/database', wangymDatabaseRoutes);
 wangymApp.use('/api/chat', wangymChatRoutes);
+wangymApp.use('/api/kb', wangymKbRoutes);
 
 // 托管前端静态页面
 wangymApp.use(express.static(path.join(__dirname, '..', 'frontend')));

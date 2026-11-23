@@ -117,3 +117,31 @@
 - 结论：代金券不能用于充值或清欠，必须先让现金余额不为负
 
 ---
+
+## 2026-11-23 16:30 | 大模型：DeepSeek-V4.1-Flash
+
+**提示词全文：**
+
+```text
+完成知识库文件上传功能，构建2个知识库文件，完成基于知识库的问答，支持doc和docx，ppt，完成知识库管理（RAG）：基于本地文件（如 PDF/TXT）上传、解析，构建专属自动客服或问答系统，包括知识库文件上传模块。在控制台输出发送给大模型的数据和接受自大模型的数据。
+```
+
+**完成内容：**
+
+1. 新增 3 张表：`wangym_kb`（8 条）、`wangym_kb_file`（8 条）、`wangym_kb_chunk`（8 条）
+2. 新增 7 个接口：`/api/kb/list`、`/api/kb/create`、`/api/kb/:id`、`/api/kb/:id/upload`、`/api/kb/:id/files`、`/api/kb/file/:fileId`、`/api/kb/ask`
+3. 文件解析：txt/md/csv/json 直接读取；docx 解压取 `word/document.xml`；pptx 按页取 `a:t`；pdf 用 pdf-parse；旧版 doc/ppt 做二进制可读串尽力解析
+4. RAG 流程：文本切片（约 450 字、80 字重叠）→ 中文二元组关键词打分 → 取前 3 条拼提示词 → 调用 `deepseek-ai/DeepSeek-V4-Flash`
+5. 新增页面 `frontend/kb.html` + `frontend/js/wangym_kb.js`：知识库新建/删除、文件上传/删除、检索问答与引用来源展示
+6. 构建 2 个知识库文件：`docs/kb/课程项目常见问题.txt`（2 个切片）、`docs/kb/智能客服使用手册.docx`（1 个切片），已通过上传接口入库
+7. 后端控制台输出「发送给大模型的数据」与「从大模型接收到的数据」
+
+**验证结果：**
+
+- 上传 txt / docx 均返回 code=0，切片数分别为 2 和 1
+- `POST /api/kb/ask`（kb=3）返回技术栈答案，命中「课程答疑.txt」匹配分 26
+- `POST /api/kb/ask`（kb=1）返回发布提问步骤，命中「产品常见问题.txt」匹配分 16
+- 浏览器实测 `kb.html`：回答卡片与引用资料来源正常渲染
+- 服务端日志确认打印了完整的模型请求与响应 JSON
+
+---

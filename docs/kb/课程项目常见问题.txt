@@ -1,0 +1,24 @@
+课程项目常见问题（知乎制作和模仿）
+一、项目基本信息
+1. 项目名称：知乎制作和模仿，类别为模仿。
+2. 技术栈：前端使用原生 HTML、CSS、JavaScript，禁止使用第三方库、框架和 CDN 链接；后端使用 Node.js + Express，RESTful 与 MVC 风格；数据库使用 MySQL。
+3. 后端端口固定为 8201，所有接口以 /api/ 为前缀，并使用 express.static 托管 frontend 目录。
+
+二、命名与注释规范
+1. CSS 类名、JS 变量名、JS 函数名、数据库表名及字段命名一律以 wangym_ 开头。
+2. 每个文件头部必须包含注释块，内容为：姓名、学号、时间和大模型名称。
+
+三、数据库与运行
+1. 数据库凭据只允许写入 backend/.env，变量名为 DB_USER、DB_PASSWORD、DB_HOST、DB_NAME，不得出现在代码中。
+2. 每张表建立后需要插入至少 8 条有真实业务意义的测试数据。
+3. 双击根目录的“运行后台.bat”即可启动服务，浏览器访问 http://localhost:8201/index.html。
+
+四、记录文件
+1. 项目根目录的 wangym_prompt.md 记录每次提示词、时间与大模型名称。
+2. backend/wangym_interface.md 记录接口路径、方法、请求参数、响应示例与修改时间。
+3. backend/wangym_database.md 记录全部建表、改表和插入数据的 SQL，保证可在新机器重建数据库。
+
+五、常见扣分点
+1. 使用了第三方库或 CDN。
+2. 接口没有统一 JSON 格式，code 非 0 时缺少提示信息。
+3. 新建页面没有在首页 index.html 添加入口链接。

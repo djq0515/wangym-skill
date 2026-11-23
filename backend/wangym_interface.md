@@ -163,3 +163,126 @@
 ```
 
 - **修改时间**：2026-11-23 15:10
+
+---
+
+## 2026-11-23 16:25 | 知识库（RAG）接口
+
+### GET /api/kb/list
+- **请求参数**：无
+- **响应示例**：
+
+```json
+{
+  "code": 0,
+  "msg": "查询成功",
+  "data": {
+    "wangym_list": [
+      {
+        "wangym_id": 1,
+        "wangym_name": "产品使用 FAQ",
+        "wangym_description": "知乎制作和模仿站点的功能说明与常见问题",
+        "wangym_file_count": 2,
+        "wangym_chunk_count": 3
+      }
+    ]
+  }
+}
+```
+
+### POST /api/kb/create
+- **请求参数**：
+
+```json
+{ "wangym_name": "新知识库", "wangym_description": "用于演示" }
+```
+
+- **响应示例**：`{ "code": 0, "msg": "创建成功", "data": { "wangym_id": 9 } }`
+
+### DELETE /api/kb/:id
+- **请求参数**：路径参数 `id`
+- **响应示例**：`{ "code": 0, "msg": "删除成功", "data": { "wangym_id": 1 } }`
+
+### POST /api/kb/:id/upload
+- **请求参数**：文件以 Base64 放入 JSON，支持 txt/md/csv/json/doc/docx/ppt/pptx/pdf，单文件 ≤ 8MB
+
+```json
+{
+  "wangym_file_name": "课程项目常见问题.txt",
+  "wangym_file_base64": "6K++56iL..."
+}
+```
+
+- **响应示例**：
+
+```json
+{
+  "code": 0,
+  "msg": "上传并解析成功",
+  "data": {
+    "wangym_id": 9,
+    "wangym_file_name": "课程项目常见问题.txt",
+    "wangym_file_type": "txt",
+    "wangym_file_size": 1579,
+    "wangym_chunk_count": 2,
+    "wangym_preview": "课程项目常见问题（知乎制作和模仿）…"
+  }
+}
+```
+
+### GET /api/kb/:id/files
+- **响应示例**：
+
+```json
+{
+  "code": 0,
+  "msg": "查询成功",
+  "data": {
+    "wangym_list": [
+      {
+        "wangym_id": 9,
+        "wangym_file_name": "课程项目常见问题.txt",
+        "wangym_file_type": "txt",
+        "wangym_file_size": 1579,
+        "wangym_chunk_count": 2,
+        "wangym_status": "ready"
+      }
+    ]
+  }
+}
+```
+
+### DELETE /api/kb/file/:fileId
+- **响应示例**：`{ "code": 0, "msg": "删除成功", "data": { "wangym_id": 9 } }`
+
+### POST /api/kb/ask
+- **请求参数**：
+
+```json
+{ "wangym_kb_id": 3, "wangym_question": "项目必须使用什么技术栈？" }
+```
+
+- **说明**：按中文二元组关键词检索最多 3 条切片，拼装提示词后调用硅基流动 `deepseek-ai/DeepSeek-V4-Flash`；后端控制台输出「发送给大模型的数据」与「从大模型接收到的数据」
+- **响应示例**：
+
+```json
+{
+  "code": 0,
+  "msg": "问答成功",
+  "data": {
+    "wangym_answer": "项目必须使用前端原生 HTML、CSS、JavaScript（禁止第三方库与 CDN），后端使用 Node.js + Express，端口固定 8201，数据库使用 MySQL。\n\n参考：资料1",
+    "wangym_model": "deepseek-ai/DeepSeek-V4-Flash",
+    "wangym_usage": { "prompt_tokens": 315, "completion_tokens": 90, "total_tokens": 405 },
+    "wangym_sources": [
+      {
+        "wangym_file_name": "课程答疑.txt",
+        "wangym_chunk_index": 0,
+        "wangym_score": 26,
+        "wangym_snippet": "问：项目必须使用什么技术栈？答：前端使用原生 HTML…"
+      }
+    ]
+  }
+}
+```
+
+- **修改时间**：2026-11-23 16:25

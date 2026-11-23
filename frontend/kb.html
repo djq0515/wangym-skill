@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>知识库问答 - 知乎制作和模仿</title>
+  <link rel="stylesheet" href="css/wangym_common.css" />
+  <link rel="stylesheet" href="css/wangym_pages.css" />
+</head>
+<body>
+  <header class="wangym_header">
+    <a class="wangym_logo" href="index.html">
+      <span class="wangym_logo_mark">知</span>
+      <span>知乎制作和模仿</span>
+    </a>
+    <nav class="wangym_header_nav">
+      <a class="wangym_header_link" href="index.html">首页</a>
+      <a class="wangym_header_link" href="database.html">数据库测试</a>
+      <a class="wangym_header_link" href="news.html">科技新闻</a>
+      <a class="wangym_header_link" href="gallery.html">图文列表</a>
+      <a class="wangym_header_link" href="chat.html">AI 聊天</a>
+      <a class="wangym_header_link" href="service.html">在线客服</a>
+      <a class="wangym_header_link is_active" href="kb.html">知识库问答</a>
+    </nav>
+  </header>
+
+  <main class="wangym_main">
+    <div class="wangym_page_head">
+      <h1 class="wangym_page_title">知识库管理（RAG）</h1>
+      <p class="wangym_page_desc">
+        支持 txt / md / doc / docx / ppt / pptx / pdf 上传，后端解析切分后存入 MySQL，问答时先检索相关片段再交给大模型作答。
+        发送给大模型与从大模型接收的数据会输出到后端控制台。
+      </p>
+    </div>
+
+    <div class="wangym_api_bar">
+      <strong>后端接口：</strong>
+      <a href="http://localhost:8201/api/kb/list" target="_blank" rel="noopener"><code>/api/kb/list</code></a>
+      <span>|</span><a href="http://localhost:8201/api/kb/ask" target="_blank" rel="noopener"><code>/api/kb/ask</code></a>
+      <span>|</span><span>POST /api/kb/:id/upload</span>
+    </div>
+
+    <div class="wangym_kb_layout">
+      <section class="wangym_card wangym_kb_side">
+        <h2 class="wangym_kb_title">知识库列表</h2>
+        <form class="wangym_kb_create" id="wangym_kb_create_form">
+          <input class="wangym_kb_input" id="wangym_kb_name" type="text" placeholder="知识库名称" maxlength="100" required />
+          <input class="wangym_kb_input" id="wangym_kb_desc" type="text" placeholder="说明（可选）" maxlength="200" />
+          <button class="wangym_btn" type="submit">新建知识库</button>
+        </form>
+        <div class="wangym_kb_list" id="wangym_kb_list"></div>
+      </section>
+
+      <section class="wangym_card wangym_kb_main">
+        <h2 class="wangym_kb_title" id="wangym_kb_current">请选择一个知识库</h2>
+
+        <div class="wangym_kb_upload" id="wangym_kb_upload_box">
+          <label class="wangym_kb_file_label">
+            <input id="wangym_kb_file" type="file" multiple accept=".txt,.md,.doc,.docx,.ppt,.pptx,.pdf,.csv,.json" />
+          </label>
+          <p class="wangym_kb_tip">单个文件不超过 8MB；旧版 .doc/.ppt 为尽力解析，建议另存为 docx/pptx。</p>
+        </div>
+
+        <div class="wangym_kb_files" id="wangym_kb_files"></div>
+
+        <form class="wangym_kb_ask" id="wangym_kb_ask_form">
+          <textarea class="wangym_kb_question" id="wangym_kb_question" rows="3" placeholder="基于当前知识库提问，例如：申请退款需要多久？"></textarea>
+          <button class="wangym_btn" type="submit">提问</button>
+        </form>
+
+        <div class="wangym_kb_answer" id="wangym_kb_answer"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="wangym_footer">
+    姓名：王一鸣 | 学号：24002060518 | 项目：知乎制作和模仿（模仿）
+  </footer>
+
+  <script src="js/wangym_kb.js"></script>
+</body>
+</html>

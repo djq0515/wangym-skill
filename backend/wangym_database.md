@@ -78,3 +78,94 @@ USE wangym_zhihu;
 SELECT COUNT(*) FROM wangym_news;      -- 8
 SELECT COUNT(*) FROM wangym_gallery;   -- 8
 ```
+
+---
+
+## 2026-11-23 16:20 | 知识库（RAG）表结构
+
+```sql
+USE wangym_zhihu;
+
+CREATE TABLE IF NOT EXISTS wangym_kb (
+  wangym_id INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '知识库ID',
+  wangym_name VARCHAR(100) NOT NULL COMMENT '知识库名称',
+  wangym_description VARCHAR(500) NOT NULL DEFAULT '' COMMENT '知识库说明',
+  wangym_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (wangym_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='知识库';
+
+CREATE TABLE IF NOT EXISTS wangym_kb_file (
+  wangym_id INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '文件ID',
+  wangym_kb_id INT UNSIGNED NOT NULL COMMENT '所属知识库ID',
+  wangym_file_name VARCHAR(255) NOT NULL COMMENT '文件名',
+  wangym_file_type VARCHAR(20) NOT NULL COMMENT '文件类型',
+  wangym_file_size INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '文件大小（字节）',
+  wangym_chunk_count INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '切片数量',
+  wangym_status VARCHAR(20) NOT NULL DEFAULT 'ready' COMMENT '解析状态',
+  wangym_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上传时间',
+  PRIMARY KEY (wangym_id),
+  KEY wangym_idx_kb (wangym_kb_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='知识库文件';
+
+CREATE TABLE IF NOT EXISTS wangym_kb_chunk (
+  wangym_id INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '切片ID',
+  wangym_kb_id INT UNSIGNED NOT NULL COMMENT '所属知识库ID',
+  wangym_file_id INT UNSIGNED NOT NULL COMMENT '所属文件ID',
+  wangym_chunk_index INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '切片序号',
+  wangym_content TEXT NOT NULL COMMENT '切片文本',
+  wangym_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (wangym_id),
+  KEY wangym_idx_file (wangym_file_id),
+  KEY wangym_idx_kb_chunk (wangym_kb_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='知识库文本切片';
+
+INSERT INTO wangym_kb (wangym_id, wangym_name, wangym_description) VALUES
+(1, '产品使用 FAQ', '知乎制作和模仿站点的功能说明与常见问题'),
+(2, '售后服务政策', '账号、订单、退款与发票等售后规则'),
+(3, '课程项目答疑', '高级网页设计课程与全栈项目的常见疑问'),
+(4, '账号与安全', '登录、密码、实名与风控相关说明'),
+(5, '支付与发票', '支付方式、开票流程与费用说明'),
+(6, '内容发布规范', '提问、回答与图片上传的内容要求'),
+(7, '隐私与数据保护', '用户数据采集、存储与删除规则'),
+(8, '技术支持常见问题', '接口调用、数据库与部署排错指南');
+
+INSERT INTO wangym_kb_file (wangym_id, wangym_kb_id, wangym_file_name, wangym_file_type, wangym_file_size, wangym_chunk_count, wangym_status) VALUES
+(1, 1, '产品常见问题.txt', 'txt', 1024, 1, 'ready'),
+(2, 2, '售后政策说明.txt', 'txt', 1180, 1, 'ready'),
+(3, 3, '课程答疑.txt', 'txt', 960, 1, 'ready'),
+(4, 4, '账号安全须知.txt', 'txt', 880, 1, 'ready'),
+(5, 5, '支付与开票.txt', 'txt', 920, 1, 'ready'),
+(6, 6, '内容规范.txt', 'txt', 860, 1, 'ready'),
+(7, 7, '隐私政策摘要.txt', 'txt', 900, 1, 'ready'),
+(8, 8, '技术支持 FAQ.txt', 'txt', 1040, 1, 'ready');
+
+INSERT INTO wangym_kb_chunk (wangym_kb_id, wangym_file_id, wangym_chunk_index, wangym_content) VALUES
+(1, 1, 0, '问：如何发布提问？答：登录后点击首页右上角的“提问”按钮，填写标题与正文，正文不少于 20 字，选择话题标签后提交，审核通过即可展示。'),
+(2, 2, 0, '问：申请退款需要多久？答：订单提交退款申请后 1 个工作日内审核，审核通过后原路退回，银行卡一般 1-3 个工作日到账，支付宝与微信通常当天到账。'),
+(3, 3, 0, '问：项目必须使用什么技术栈？答：前端使用原生 HTML、CSS、JavaScript，禁止第三方库与 CDN；后端使用 Node.js + Express，端口固定 8201，数据库使用 MySQL。'),
+(4, 4, 0, '问：忘记密码怎么办？答：在登录页点击“忘记密码”，通过绑定手机号接收验证码后重置；连续 5 次密码错误会触发 15 分钟锁定。'),
+(5, 5, 0, '问：如何开具发票？答：在“我的订单”中选择已支付订单，点击“申请开票”，填写抬头与税号，电子发票会在 3 个工作日内发送到预留邮箱。'),
+(6, 6, 0, '问：图片上传有什么要求？答：支持 JPG、PNG 格式，单张不超过 5MB，禁止上传侵权、违规或含个人隐私的图片，违规内容会被删除并记录。'),
+(7, 7, 0, '问：会收集哪些用户数据？答：仅收集账号信息、登录日志与问答内容，用于身份识别与服务改进，不向第三方出售；用户可申请导出或删除个人数据。'),
+(8, 8, 0, '问：接口返回 500 怎么排查？答：先在浏览器控制台查看请求地址与响应体，再检查后端控制台错误日志，确认数据库连接与 .env 配置是否正确。');
+```
+
+### 通过接口上传的知识库文件（2026-11-23 16:12）
+
+原始文件已保存在 `docs/kb/`，可在上传接口中重新上传以自动生成切片：
+
+```sql
+INSERT INTO wangym_kb_file (wangym_id, wangym_kb_id, wangym_file_name, wangym_file_type, wangym_file_size, wangym_chunk_count, wangym_status) VALUES
+(9, 1, '课程项目常见问题.txt', 'txt', 1579, 2, 'ready'),
+(10, 3, '智能客服使用手册.docx', 'docx', 1502, 1, 'ready');
+```
+
+切片数据（wangym_kb_chunk，文件 ID 9 共 2 条、文件 ID 10 共 1 条）由 `POST /api/kb/:id/upload` 自动解析写入。
+
+### 验证结果
+
+```sql
+SELECT COUNT(*) FROM wangym_kb;        -- 8
+SELECT COUNT(*) FROM wangym_kb_file;   -- 10
+SELECT COUNT(*) FROM wangym_kb_chunk;  -- 11
+```

@@ -6,7 +6,7 @@
 
 ## 项目简介
 
-本项目模仿知乎的页面风格与交互方式，完成了一个基于原生前端 + Node.js/Express + MySQL 的全栈示例项目，包含首页导航、数据库连接测试、科技新闻列表、图文列表、AI 聊天和在线客服六个页面。
+本项目模仿知乎的页面风格与交互方式，完成了一个基于原生前端 + Node.js/Express + MySQL 的全栈示例项目，包含首页导航、数据库连接测试、科技新闻列表、图文列表、AI 聊天、在线客服和知识库问答七个页面。
 
 ## 技术栈
 
@@ -29,6 +29,7 @@
 │   ├── gallery.html           # 图文列表
 │   ├── chat.html              # AI 聊天（硅基流动）
 │   ├── service.html           # 在线客服（七牛）
+│   ├── kb.html                # 知识库管理与 RAG 问答
 │   ├── css/                   # 样式
 │   ├── js/                    # 脚本
 │   ├── fonts/                 # 图标字体（预留）
@@ -66,6 +67,7 @@ node app.js
 - 图文列表：http://localhost:8201/gallery.html
 - AI 聊天：http://localhost:8201/chat.html
 - 在线客服：http://localhost:8201/service.html
+- 知识库问答：http://localhost:8201/kb.html
 
 ## 接口列表
 
@@ -75,6 +77,7 @@ node app.js
 | /api/gallery | GET | 获取图文列表 |
 | /api/database/test | POST | 使用输入的账号密码测试数据库连接 |
 | /api/chat | POST | AI 聊天 / 在线客服，按 provider 转发到大模型 |
+| /api/kb/list 等 | GET / POST / DELETE | 知识库管理、文件上传解析与 RAG 问答 |
 
 统一响应格式：`{ "code": 0, "msg": "提示信息", "data": {...} }`，`code=0` 表示成功。
 
