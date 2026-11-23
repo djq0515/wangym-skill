@@ -71,3 +71,13 @@ node app.js
 | /api/database/test | POST | 使用输入的账号密码测试数据库连接 |
 
 统一响应格式：`{ "code": 0, "msg": "提示信息", "data": {...} }`，`code=0` 表示成功。
+
+## 在线访问与发布
+
+- GitHub 仓库：https://github.com/djq0515/wangym-skill
+- GitHub Pages（在线页面）：https://djq0515.github.io/wangym-skill/
+- Pages 发布方式：`main` 分支的 `/docs` 目录（[docs/index.html](docs/index.html) 为自包含落地页，不依赖后端）
+- 自定义 Skill 目录：`.trae/skills/wangym-zhihu-clone/`（含 `SKILL.md` 与 `assets/wangym_database.sql`）
+
+> 本地开发仍通过 `http://localhost:8201` 访问完整功能；Pages 只发布静态落地页。
+

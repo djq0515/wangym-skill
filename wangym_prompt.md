@@ -49,3 +49,24 @@
 - 项目当前无 git remote
 
 ---
+
+## 2026-11-23 14:35 | 大模型：DeepSeek-V4.1-Flash
+
+**实践结果（GitHub 上传与 Pages 发布）：**
+
+| 项目 | 结果 |
+| --- | --- |
+| 网络加速 | 已通过镜像 gh-proxy.com 下载并安装 Watt Toolkit 3.2.0，GitHub 网页与 git SSH 均可访问 |
+| SSH 密钥 | `C:\Users\123\.ssh\id_ed25519_3957378155`，注释 `3957378155@qq.com`，指纹 `SHA256:9guNYKJUAXExF2FzGINRjAn2kFKYaE7TvRdsjy0X3lo`（已加入 GitHub，标题 wangym-laptop） |
+| GitHub 账号 | djq0515 |
+| 仓库 | https://github.com/djq0515/wangym-skill （Public，主分支 main） |
+| 自定义 Skill | `.trae/skills/wangym-zhihu-clone/SKILL.md` + `assets/wangym_database.sql` |
+| Pages 发布 | main 分支 `/docs` 目录，站点 https://djq0515.github.io/wangym-skill/ |
+| 提交记录 | db71da3 初始化规则 → d28c593 Skill 与落地页 → 6de9fe4 更新仓库地址 → 本次留存提交 |
+
+**注意事项（排错留存）：**
+- 生成密钥时 PowerShell 传入 `-N '""'` 会把口令设成两个引号字符，导致 SSH 报 `Permission denied (publickey)`；已用 `ssh-keygen -p -P '""' -N ''`（通过 .NET ArgumentList 传参）清除口令
+- 推送时若 `github.com` 网页不可达，可先确认 Watt Toolkit 的 GitHub 加速已开启；SSH 认证可用 `ssh -T git@github.com` 自检
+- 私钥、`.env`、`node_modules` 均未提交到仓库
+
+---
