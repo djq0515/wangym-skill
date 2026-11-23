@@ -70,3 +70,25 @@
 - 私钥、`.env`、`node_modules` 均未提交到仓库
 
 ---
+
+## 2026-11-23 14:52 | 大模型：DeepSeek-V4.1-Flash
+
+**提示词全文：**
+
+```text
+`https://wonderful-mousse-e19f9b.netlify.app/`完成这个里面的步骤
+```
+
+**执行结果（课件《自定义 Skill · GitHub 上传 与 Pages 发布》逐项核对）：**
+
+| 课件步骤 | 状态 | 说明 |
+| --- | --- | --- |
+| 1 准备工作（watt 加速、登录 GitHub、准备公钥） | 已完成 | Watt Toolkit 3.2.0 已安装并加速；账号 djq0515；密钥 id_ed25519_3957378155 |
+| 2 设置公钥与私人令牌 | 已完成 | SSH 公钥已添加（wangym-laptop）；PAT 已创建：Note `wangym-skill-pages`，Scope `repo`，有效期 30 天（令牌值仅显示一次，未记录、未写入任何文件） |
+| 3-6 GitHub 网页操作（Settings → SSH keys → New repository） | 已完成 | 仓库 djq0515/wangym-skill（Public） |
+| 4 创建 Skill 并 push | 已完成 | `.trae/skills/wangym-zhihu-clone/`，main 分支已推送 |
+| 5 Pages 发布 | 已完成 | https://djq0515.github.io/wangym-skill/ （main /docs） |
+
+> 课件中的示例仓库 `Chen-Yingyu/cheney.git` 为讲师占位地址，实际使用本人仓库 `djq0515/wangym-skill`。
+
+---
