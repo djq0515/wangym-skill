@@ -112,3 +112,54 @@
 ```
 
 - **修改时间**：2026-11-23 13:58
+
+---
+
+## 2026-11-23 15:10 | POST /api/chat
+
+- **接口路径**：`/api/chat`
+- **HTTP 方法**：POST
+- **说明**：AI 聊天与在线客服共用接口，按 provider 转发到硅基流动或七牛（OpenAI 兼容格式），服务端控制台会打印发送给大模型的数据与接收到的数据
+- **请求参数**：
+
+```json
+{
+  "provider": "siliconflow",
+  "messages": [
+    { "role": "system", "content": "你是一个有用的助手，请用简洁友好的中文回答。" },
+    { "role": "user", "content": "用一句话介绍杭州" }
+  ]
+}
+```
+
+`provider` 取值 `siliconflow`（默认，模型 `deepseek-ai/DeepSeek-V4-Flash`）或 `qiniu`（模型 `qiniu/conatus-free`）。
+
+- **响应格式（成功）**：
+
+```json
+{
+  "code": 0,
+  "msg": "对话成功",
+  "data": {
+    "wangym_reply": "杭州是一座既有西湖诗意又有科技活力的城市，古老与现代在此完美交融。",
+    "wangym_model": "deepseek-ai/DeepSeek-V4-Flash",
+    "wangym_usage": {
+      "prompt_tokens": 20,
+      "completion_tokens": 295,
+      "total_tokens": 315
+    }
+  }
+}
+```
+
+- **响应格式（失败）**：
+
+```json
+{
+  "code": 1,
+  "msg": "未配置 API Key，请在 backend/.env 中填写 SILICONFLOW_API_KEY",
+  "data": null
+}
+```
+
+- **修改时间**：2026-11-23 15:10

@@ -6,7 +6,7 @@
 
 ## 项目简介
 
-本项目模仿知乎的页面风格与交互方式，完成了一个基于原生前端 + Node.js/Express + MySQL 的全栈示例项目，包含首页导航、数据库连接测试、科技新闻列表和图文列表四个页面。
+本项目模仿知乎的页面风格与交互方式，完成了一个基于原生前端 + Node.js/Express + MySQL 的全栈示例项目，包含首页导航、数据库连接测试、科技新闻列表、图文列表、AI 聊天和在线客服六个页面。
 
 ## 技术栈
 
@@ -27,6 +27,8 @@
 │   ├── database.html          # 数据库连接测试
 │   ├── news.html              # 科技新闻列表
 │   ├── gallery.html           # 图文列表
+│   ├── chat.html              # AI 聊天（硅基流动）
+│   ├── service.html           # 在线客服（七牛）
 │   ├── css/                   # 样式
 │   ├── js/                    # 脚本
 │   ├── fonts/                 # 图标字体（预留）
@@ -54,6 +56,7 @@ node app.js
 3. 浏览器访问：http://localhost:8201/index.html
 
 > 数据库凭据保存在 `backend/.env` 中，变量为 `DB_USER`、`DB_PASSWORD`、`DB_HOST`、`DB_NAME`。
+> AI 密钥同样写在 `backend/.env`：`SILICONFLOW_API_KEY`（AI 聊天）、`QINIU_API_KEY`（在线客服）。
 
 ## 页面入口
 
@@ -61,6 +64,8 @@ node app.js
 - 数据库连接测试：http://localhost:8201/database.html
 - 科技新闻列表：http://localhost:8201/news.html
 - 图文列表：http://localhost:8201/gallery.html
+- AI 聊天：http://localhost:8201/chat.html
+- 在线客服：http://localhost:8201/service.html
 
 ## 接口列表
 
@@ -69,6 +74,7 @@ node app.js
 | /api/news | GET | 获取科技新闻列表 |
 | /api/gallery | GET | 获取图文列表 |
 | /api/database/test | POST | 使用输入的账号密码测试数据库连接 |
+| /api/chat | POST | AI 聊天 / 在线客服，按 provider 转发到大模型 |
 
 统一响应格式：`{ "code": 0, "msg": "提示信息", "data": {...} }`，`code=0` 表示成功。
 

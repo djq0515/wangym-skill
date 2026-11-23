@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 聊天 - 知乎制作和模仿</title>
+  <link rel="stylesheet" href="css/wangym_common.css" />
+  <link rel="stylesheet" href="css/wangym_pages.css" />
+</head>
+<body>
+  <header class="wangym_header">
+    <a class="wangym_logo" href="index.html">
+      <span class="wangym_logo_mark">知</span>
+      <span>知乎制作和模仿</span>
+    </a>
+    <nav class="wangym_header_nav">
+      <a class="wangym_header_link" href="index.html">首页</a>
+      <a class="wangym_header_link" href="database.html">数据库测试</a>
+      <a class="wangym_header_link" href="news.html">科技新闻</a>
+      <a class="wangym_header_link" href="gallery.html">图文列表</a>
+      <a class="wangym_header_link is_active" href="chat.html">AI 聊天</a>
+      <a class="wangym_header_link" href="service.html">在线客服</a>
+    </nav>
+  </header>
+
+  <main class="wangym_main">
+    <div class="wangym_page_head">
+      <h1 class="wangym_page_title">AI 聊天</h1>
+      <p class="wangym_page_desc">基于硅基流动 API（模型 deepseek-ai/DeepSeek-V4-Flash），请求与响应数据会输出到浏览器控制台。</p>
+    </div>
+
+    <div class="wangym_api_bar">
+      <strong>后端接口：</strong>
+      <a href="http://localhost:8201/api/chat" target="_blank" rel="noopener">
+        <code>http://localhost:8201/api/chat</code>
+      </a>
+      <span>|</span>
+      <span>POST</span>
+    </div>
+
+    <section class="wangym_card wangym_chat_box" id="wangym_chat_box" data-provider="siliconflow"
+      data-system="你是一个有用的助手，请用简洁友好的中文回答问题。"
+      data-welcome="你好，我是 AI 助手，可以问我任何问题。">
+      <div class="wangym_chat_messages" id="wangym_chat_messages"></div>
+      <form class="wangym_chat_form" id="wangym_chat_form">
+        <textarea class="wangym_chat_input" id="wangym_chat_input" rows="2" placeholder="输入消息，Enter 发送，Shift + Enter 换行"></textarea>
+        <button class="wangym_btn" id="wangym_chat_send" type="submit">发送</button>
+      </form>
+      <p class="wangym_chat_tips">接口数据与错误信息可在浏览器控制台（Console）查看。</p>
+    </section>
+  </main>
+
+  <footer class="wangym_footer">
+    姓名：王一鸣 | 学号：24002060518 | 项目：知乎制作和模仿（模仿）
+  </footer>
+
+  <script src="js/wangym_chat.js"></script>
+</body>
+</html>

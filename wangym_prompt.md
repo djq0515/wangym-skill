@@ -92,3 +92,28 @@
 > 课件中的示例仓库 `Chen-Yingyu/cheney.git` 为讲师占位地址，实际使用本人仓库 `djq0515/wangym-skill`。
 
 ---
+
+## 2026-11-23 15:40 | 大模型：DeepSeek-V4.1-Flash
+
+**提示词全文：**
+
+```text
+根据这个步骤帮我去做
+（附件：LLM设计 - 2026.docx）
+```
+
+**文档要求与完成情况：**
+
+| 文档步骤 | 状态 | 说明 |
+| --- | --- | --- |
+| 1 申请免费 API Key（硅基流动 / 七牛） | 已完成 | 硅基流动：实名认证、领取 16 元认证奖励券、创建密钥 `wangym-chat`（值仅写入 backend/.env） |
+| 2 使用硅基流动 Key 创建 AI 聊天应用 | 已完成 | 新增 `POST /api/chat`、`frontend/chat.html`、`frontend/js/wangym_chat.js`，模型 `deepseek-ai/DeepSeek-V4-Flash`，前后端控制台均输出收发数据 |
+| 3 使用七牛 Key 完成在线客服 | 待配置 Key | `frontend/service.html` 已就绪，provider=qiniu、模型 `qiniu/conatus-free`；缺少 QINIU_API_KEY 时返回提示 |
+
+**排错记录（402）：**
+- 现象：聊天接口返回 402 `account balance insufficient`
+- 原因：账户现金余额为 -0.0027 元（欠费），硅基流动只校验现金余额，16 元券不会先抵扣
+- 处理：充值页支持自定义金额，充 1 元后余额变为 0.0972 元，接口随即返回 code=0，AI 聊天页端到端通过
+- 结论：代金券不能用于充值或清欠，必须先让现金余额不为负
+
+---

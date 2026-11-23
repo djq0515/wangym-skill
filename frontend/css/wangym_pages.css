@@ -135,6 +135,102 @@
   padding: 30px 32px 34px;
 }
 
+/* AI 聊天 / 在线客服 */
+.wangym_chat_box {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: min(600px, 68vh);
+}
+
+.wangym_chat_messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: #f7f9fc;
+  border: 1px solid var(--wangym_border);
+  border-radius: 12px;
+}
+
+.wangym_chat_msg {
+  display: flex;
+}
+
+.wangym_chat_msg.is_user {
+  justify-content: flex-end;
+}
+
+.wangym_chat_bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #ffffff;
+  border: 1px solid var(--wangym_border);
+  color: var(--wangym_text);
+}
+
+.wangym_chat_msg.is_user .wangym_chat_bubble {
+  background: var(--wangym_blue);
+  border-color: var(--wangym_blue);
+  color: #ffffff;
+}
+
+.wangym_chat_msg.is_typing .wangym_chat_bubble {
+  color: #9aa3af;
+  font-style: italic;
+}
+
+.wangym_chat_msg.is_error .wangym_chat_bubble {
+  background: #fdeeec;
+  border-color: #f6c9c3;
+  color: #c0392b;
+}
+
+.wangym_chat_form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.wangym_chat_input {
+  flex: 1;
+  min-height: 52px;
+  max-height: 140px;
+  padding: 11px 14px;
+  border: 1px solid var(--wangym_border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--wangym_text);
+  background: #fafbfc;
+  outline: none;
+  resize: vertical;
+  transition: all 0.2s ease;
+}
+
+.wangym_chat_input:focus {
+  border-color: var(--wangym_blue);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.12);
+}
+
+.wangym_chat_tips {
+  font-size: 12px;
+  color: #9aa3af;
+  text-align: center;
+}
+
 .wangym_db_tips {
   margin-top: 18px;
   font-size: 12.5px;

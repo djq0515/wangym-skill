@@ -7,6 +7,7 @@ const cors = require('cors');
 const wangymNewsRoutes = require('./routes/wangym_newsRoutes');
 const wangymGalleryRoutes = require('./routes/wangym_galleryRoutes');
 const wangymDatabaseRoutes = require('./routes/wangym_databaseRoutes');
+const wangymChatRoutes = require('./routes/wangym_chatRoutes');
 
 const wangymApp = express();
 const wangymPort = 8201;
@@ -20,6 +21,7 @@ wangymApp.use(express.urlencoded({ extended: true }));
 wangymApp.use('/api/news', wangymNewsRoutes);
 wangymApp.use('/api/gallery', wangymGalleryRoutes);
 wangymApp.use('/api/database', wangymDatabaseRoutes);
+wangymApp.use('/api/chat', wangymChatRoutes);
 
 // 托管前端静态页面
 wangymApp.use(express.static(path.join(__dirname, '..', 'frontend')));
