@@ -11,3 +11,6 @@ backend/.env
 .screenshots/
 Thumbs.db
 .DS_Store
+
+# Trae 自动生成的分享包
+.trae-html-share-packages/

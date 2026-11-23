@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>科技新闻列表 - 知乎制作和模仿</title>
+  <link rel="stylesheet" href="css/wangym_common.css" />
+  <link rel="stylesheet" href="css/wangym_pages.css" />
+</head>
+<body>
+  <header class="wangym_header">
+    <a class="wangym_logo" href="index.html">
+      <span class="wangym_logo_mark">知</span>
+      <span>知乎制作和模仿</span>
+    </a>
+    <nav class="wangym_header_nav">
+      <a class="wangym_header_link" href="index.html">首页</a>
+      <a class="wangym_header_link" href="database.html">数据库测试</a>
+      <a class="wangym_header_link is_active" href="news.html">科技新闻</a>
+      <a class="wangym_header_link" href="gallery.html">图文列表</a>
+    </nav>
+  </header>
+
+  <main class="wangym_main">
+    <div class="wangym_page_head">
+      <h1 class="wangym_page_title">科技新闻列表</h1>
+      <p class="wangym_page_desc">新闻数据存储于数据库 wangym_news 表，由后端接口实时返回。</p>
+    </div>
+
+    <div class="wangym_api_bar">
+      <strong>后端接口：</strong>
+      <a href="http://localhost:8201/api/news" target="_blank" rel="noopener">
+        <code>http://localhost:8201/api/news</code>
+      </a>
+      <span>|</span>
+      <span>GET</span>
+    </div>
+
+    <section id="wangym_news_container" class="wangym_news_list">
+      <div class="wangym_loading">正在加载新闻数据...</div>
+    </section>
+  </main>
+
+  <footer class="wangym_footer">
+    姓名：王一鸣 | 学号：24002060518 | 项目：知乎制作和模仿（模仿）
+  </footer>
+
+  <script src="js/wangym_news.js"></script>
+</body>
+</html>

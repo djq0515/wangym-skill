@@ -1,0 +1,177 @@
+/* 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash */
+/* 首页：canvas 背景与导航卡片 */
+
+.wangym_index_body {
+  background: #071427;
+  color: #f2f6ff;
+  overflow-x: hidden;
+}
+
+#wangym_canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.wangym_index_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vw 60vw at 15% 10%, rgba(0, 132, 255, 0.26), transparent 62%),
+    radial-gradient(52vw 52vw at 88% 82%, rgba(79, 172, 254, 0.2), transparent 60%),
+    linear-gradient(180deg, rgba(7, 20, 39, 0.25), rgba(7, 20, 39, 0.82));
+}
+
+.wangym_index_main {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 46px;
+  padding: 72px 0 60px;
+}
+
+.wangym_hero {
+  text-align: center;
+}
+
+.wangym_hero_tag {
+  display: inline-block;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #cfe4ff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.wangym_hero_title {
+  font-size: clamp(38px, 7vw, 64px);
+  font-weight: 800;
+  letter-spacing: 4px;
+  line-height: 1.15;
+  background: linear-gradient(120deg, #ffffff 10%, #8fd0ff 55%, #4facfe 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(79, 172, 254, 0.25);
+}
+
+.wangym_hero_sub {
+  margin-top: 14px;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: #9db6d6;
+}
+
+.wangym_hero_meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 22px;
+  font-size: 14px;
+  color: #b9cbe4;
+}
+
+.wangym_hero_meta span {
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 导航卡片 */
+.wangym_nav_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.wangym_nav_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  color: #f2f6ff;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.wangym_nav_card::after {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 120px;
+  background: radial-gradient(closest-side, rgba(79, 172, 254, 0.35), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.wangym_nav_card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(79, 172, 254, 0.6);
+  background: rgba(255, 255, 255, 0.11);
+  color: #fff;
+}
+
+.wangym_nav_card:hover::after {
+  opacity: 1;
+}
+
+.wangym_nav_index {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #6fb9ff;
+}
+
+.wangym_nav_title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wangym_nav_desc {
+  font-size: 13px;
+  color: #a9bed9;
+  min-height: 40px;
+}
+
+.wangym_nav_arrow {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #8fd0ff;
+  letter-spacing: 1px;
+}
+
+.wangym_hint {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #7f95b3;
+}
+
+@media (max-width: 860px) {
+  .wangym_nav_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wangym_index_main {
+    gap: 34px;
+    padding: 56px 0 44px;
+  }
+}

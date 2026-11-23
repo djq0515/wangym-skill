@@ -1,0 +1,153 @@
+/* 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash */
+/* 新闻、图文、数据库测试页面的样式 */
+
+/* 新闻列表 */
+.wangym_news_list {
+  display: grid;
+  gap: 16px;
+}
+
+.wangym_news_item {
+  padding: 22px 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wangym_news_item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(31, 35, 41, 0.12);
+}
+
+.wangym_news_meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+  color: var(--wangym_text_light);
+}
+
+.wangym_news_source {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(0, 132, 255, 0.1);
+  color: var(--wangym_blue_dark);
+  font-weight: 600;
+}
+
+.wangym_news_title {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.wangym_news_title a {
+  color: var(--wangym_text);
+}
+
+.wangym_news_title a:hover {
+  color: var(--wangym_blue);
+}
+
+.wangym_news_summary {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--wangym_text_light);
+}
+
+.wangym_news_foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--wangym_border);
+  font-size: 12.5px;
+  color: #9aa3af;
+}
+
+/* 图文网格 */
+.wangym_gallery_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.wangym_gallery_card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wangym_gallery_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(31, 35, 41, 0.14);
+}
+
+.wangym_gallery_cover {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #e9edf3;
+}
+
+.wangym_gallery_body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.wangym_gallery_title {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.wangym_gallery_desc {
+  font-size: 13.5px;
+  color: var(--wangym_text_light);
+  flex: 1;
+}
+
+.wangym_gallery_foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: #9aa3af;
+  padding-top: 10px;
+  border-top: 1px dashed var(--wangym_border);
+}
+
+.wangym_gallery_likes {
+  color: #e8654f;
+  font-weight: 600;
+}
+
+/* 数据库测试卡片 */
+.wangym_db_card {
+  width: min(560px, 100%);
+  margin: 0 auto;
+  padding: 30px 32px 34px;
+}
+
+.wangym_db_tips {
+  margin-top: 18px;
+  font-size: 12.5px;
+  color: #9aa3af;
+  line-height: 1.8;
+}
+
+@media (max-width: 720px) {
+  .wangym_db_card {
+    padding: 24px 20px 26px;
+  }
+
+  .wangym_news_item {
+    padding: 18px;
+  }
+}

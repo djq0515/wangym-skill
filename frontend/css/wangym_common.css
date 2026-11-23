@@ -1,0 +1,311 @@
+/* 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash */
+/* 全站通用样式 */
+
+:root {
+  --wangym_blue: #0084ff;
+  --wangym_blue_dark: #0066d6;
+  --wangym_bg: #f4f6f9;
+  --wangym_card: #ffffff;
+  --wangym_text: #1f2329;
+  --wangym_text_light: #646a73;
+  --wangym_border: #e5e8ee;
+  --wangym_radius: 14px;
+  --wangym_shadow: 0 6px 24px rgba(31, 35, 41, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: var(--wangym_text);
+  background: var(--wangym_bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--wangym_blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--wangym_blue_dark);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 顶部导航 */
+.wangym_header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--wangym_border);
+}
+
+.wangym_logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--wangym_text);
+}
+
+.wangym_logo_mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0084ff, #4facfe);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wangym_header_nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.wangym_header_link {
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--wangym_text_light);
+  transition: all 0.2s ease;
+}
+
+.wangym_header_link:hover,
+.wangym_header_link.is_active {
+  color: var(--wangym_blue);
+  background: rgba(0, 132, 255, 0.1);
+}
+
+/* 页面容器 */
+.wangym_main {
+  width: min(1120px, 92vw);
+  margin: 0 auto;
+  padding: 40px 0 64px;
+}
+
+.wangym_page_head {
+  margin-bottom: 26px;
+}
+
+.wangym_page_title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.wangym_page_desc {
+  margin-top: 8px;
+  color: var(--wangym_text_light);
+  font-size: 14px;
+}
+
+/* 接口地址提示条 */
+.wangym_api_bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  padding: 12px 16px;
+  background: #eef6ff;
+  border: 1px solid #cfe6ff;
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--wangym_text_light);
+}
+
+.wangym_api_bar strong {
+  color: var(--wangym_text);
+  font-weight: 600;
+}
+
+.wangym_api_bar code {
+  font-family: Consolas, Monaco, monospace;
+  color: var(--wangym_blue_dark);
+  word-break: break-all;
+}
+
+/* 卡片 */
+.wangym_card {
+  background: var(--wangym_card);
+  border: 1px solid var(--wangym_border);
+  border-radius: var(--wangym_radius);
+  box-shadow: var(--wangym_shadow);
+}
+
+/* 按钮 */
+.wangym_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border: none;
+  border-radius: 999px;
+  background: var(--wangym_blue);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wangym_btn:hover {
+  background: var(--wangym_blue_dark);
+  transform: translateY(-1px);
+}
+
+.wangym_btn:active {
+  transform: translateY(0);
+}
+
+.wangym_btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 表单 */
+.wangym_form {
+  display: grid;
+  gap: 16px;
+}
+
+.wangym_field {
+  display: grid;
+  gap: 6px;
+}
+
+.wangym_label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--wangym_text);
+}
+
+.wangym_input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--wangym_border);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--wangym_text);
+  background: #fafbfc;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.wangym_input:focus {
+  border-color: var(--wangym_blue);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.12);
+}
+
+/* 状态提示 */
+.wangym_state {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  display: none;
+}
+
+.wangym_state.is_show {
+  display: block;
+}
+
+.wangym_state.is_success {
+  display: block;
+  color: #127a3c;
+  background: #eaf8f0;
+  border-color: #bfe8cf;
+}
+
+.wangym_state.is_error {
+  display: block;
+  color: #c0392b;
+  background: #fdeeec;
+  border-color: #f6c9c3;
+}
+
+.wangym_state_title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.wangym_state_detail {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  word-break: break-all;
+  white-space: pre-line;
+}
+
+/* 加载 / 空状态 */
+.wangym_loading,
+.wangym_empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--wangym_text_light);
+  font-size: 14px;
+}
+
+/* 页脚 */
+.wangym_footer {
+  padding: 26px 16px 34px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--wangym_text_light);
+  border-top: 1px solid var(--wangym_border);
+}
+
+@media (max-width: 720px) {
+  .wangym_header {
+    padding: 12px 16px;
+  }
+
+  .wangym_header_nav {
+    gap: 2px;
+  }
+
+  .wangym_header_link {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .wangym_main {
+    padding: 28px 0 48px;
+  }
+
+  .wangym_page_title {
+    font-size: 23px;
+  }
+}

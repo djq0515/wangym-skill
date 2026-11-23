@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!-- 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>知乎制作和模仿 · wangym-skill</title>
+  <style>
+    :root {
+      --wangym_blue: #0084ff;
+      --wangym_cyan: #4facfe;
+      --wangym_dark: #071427;
+      --wangym_text: #eaf2ff;
+      --wangym_muted: #9db6d6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+      background: var(--wangym_dark);
+      color: var(--wangym_text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: #8fd0ff; text-decoration: none; }
+    a:hover { color: #ffffff; }
+
+    #wangym_canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .wangym_bg {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(58vw 58vw at 12% 8%, rgba(0, 132, 255, 0.28), transparent 62%),
+        radial-gradient(52vw 52vw at 90% 85%, rgba(79, 172, 254, 0.2), transparent 60%),
+        linear-gradient(180deg, rgba(7, 20, 39, 0.2), rgba(7, 20, 39, 0.86));
+    }
+
+    .wangym_wrap {
+      position: relative;
+      z-index: 2;
+      width: min(1020px, 92vw);
+      margin: 0 auto;
+      padding: 96px 0 72px;
+    }
+
+    .wangym_tag {
+      display: inline-block;
+      padding: 6px 16px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      font-size: 12.5px;
+      letter-spacing: 2px;
+      color: #cfe4ff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .wangym_title {
+      font-size: clamp(36px, 6.4vw, 60px);
+      font-weight: 800;
+      letter-spacing: 4px;
+      line-height: 1.16;
+      background: linear-gradient(120deg, #ffffff 8%, #8fd0ff 55%, #4facfe 92%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 60px rgba(79, 172, 254, 0.25);
+    }
+
+    .wangym_sub {
+      margin-top: 14px;
+      color: var(--wangym_muted);
+      letter-spacing: 2px;
+      font-size: 14.5px;
+    }
+
+    .wangym_meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-top: 22px;
+      font-size: 13.5px;
+    }
+
+    .wangym_meta span {
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #c3d5ec;
+    }
+
+    .wangym_section {
+      margin-top: 54px;
+    }
+
+    .wangym_section_title {
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: #bfe0ff;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .wangym_grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .wangym_card {
+      padding: 20px 20px 22px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .wangym_card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79, 172, 254, 0.6);
+    }
+
+    .wangym_card_index {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #6fb9ff;
+    }
+
+    .wangym_card_title {
+      margin: 6px 0 6px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .wangym_card_desc {
+      font-size: 13px;
+      color: #a9bed9;
+    }
+
+    .wangym_code {
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.32);
+      border: 1px solid rgba(143, 208, 255, 0.2);
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+      color: #bfe0ff;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.9;
+    }
+
+    .wangym_footer {
+      position: relative;
+      z-index: 2;
+      padding: 26px 16px 38px;
+      text-align: center;
+      font-size: 12.5px;
+      color: #7f95b3;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="wangym_canvas"></canvas>
+  <div class="wangym_bg"></div>
+
+  <main class="wangym_wrap">
+    <p class="wangym_tag">VIBE CODING · GITHUB PAGES</p>
+    <h1 class="wangym_title">知乎制作和模仿</h1>
+    <p class="wangym_sub">项目类别：模仿 &nbsp;|&nbsp; Skill：wangym-zhihu-clone</p>
+    <div class="wangym_meta">
+      <span>姓名：王一鸣</span>
+      <span>学号：24002060518</span>
+      <span>技术栈：原生前端 + Express + MySQL</span>
+    </div>
+
+    <section class="wangym_section">
+      <h2 class="wangym_section_title">项目能力</h2>
+      <div class="wangym_grid">
+        <div class="wangym_card">
+          <div class="wangym_card_index">01 / HOME</div>
+          <h3 class="wangym_card_title">Canvas 首页导航</h3>
+          <p class="wangym_card_desc">粒子连线动画背景，集中展示项目信息与全部页面入口。</p>
+        </div>
+        <div class="wangym_card">
+          <div class="wangym_card_index">02 / DATABASE</div>
+          <h3 class="wangym_card_title">数据库连接测试</h3>
+          <p class="wangym_card_desc">输入账号密码实时连接 MySQL，成功与失败均有明确提示。</p>
+        </div>
+        <div class="wangym_card">
+          <div class="wangym_card_index">03 / NEWS</div>
+          <h3 class="wangym_card_title">科技新闻列表</h3>
+          <p class="wangym_card_desc">新闻数据存放在 wangym_news 表，页面展示接口地址与内容。</p>
+        </div>
+        <div class="wangym_card">
+          <div class="wangym_card_index">04 / GALLERY</div>
+          <h3 class="wangym_card_title">图文列表</h3>
+          <p class="wangym_card_desc">图文数据存放在 wangym_gallery 表，卡片式图片展示。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wangym_section">
+      <h2 class="wangym_section_title">本地运行</h2>
+      <div class="wangym_code"># 1. 导入数据库（MySQL）
+mysql -u root -p &lt; .trae/skills/wangym-zhihu-clone/assets/wangym_database.sql
+
+# 2. 启动后端（端口 8201）
+cd backend &amp;&amp; node app.js
+
+# 3. 打开首页
+http://localhost:8201/index.html</div>
+    </section>
+
+    <section class="wangym_section">
+      <h2 class="wangym_section_title">仓库与资料</h2>
+      <p class="wangym_card_desc">
+        GitHub 仓库：<a href="https://github.com/" id="wangym_repo_link">wangym-skill</a><br />
+        Skill 路径：<code>.trae/skills/wangym-zhihu-clone/SKILL.md</code><br />
+        接口文档：<code>backend/wangym_interface.md</code> &nbsp;|&nbsp; 数据库 SQL：<code>backend/wangym_database.md</code>
+      </p>
+    </section>
+  </main>
+
+  <footer class="wangym_footer">
+    王一鸣 · 24002060518 · 知乎制作和模仿（模仿）
+  </footer>
+
+  <script>
+    // 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash
+    (function () {
+      var wangymCanvas = document.getElementById('wangym_canvas');
+      var wangymCtx = wangymCanvas.getContext('2d');
+      var wangymParticles = [];
+      var wangymWidth = 0;
+      var wangymHeight = 0;
+
+      function wangymResize() {
+        wangymWidth = window.innerWidth;
+        wangymHeight = window.innerHeight;
+        var wangymRatio = window.devicePixelRatio || 1;
+        wangymCanvas.width = wangymWidth * wangymRatio;
+        wangymCanvas.height = wangymHeight * wangymRatio;
+        wangymCanvas.style.width = wangymWidth + 'px';
+        wangymCanvas.style.height = wangymHeight + 'px';
+        wangymCtx.setTransform(wangymRatio, 0, 0, wangymRatio, 0, 0);
+      }
+
+      function wangymCreate() {
+        var wangymCount = Math.min(90, Math.floor((wangymWidth * wangymHeight) / 18000));
+        wangymParticles = [];
+        for (var wangymI = 0; wangymI < wangymCount; wangymI++) {
+          wangymParticles.push({
+            x: Math.random() * wangymWidth,
+            y: Math.random() * wangymHeight,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 1.7 + 0.8
+          });
+        }
+      }
+
+      function wangymDraw() {
+        wangymCtx.clearRect(0, 0, wangymWidth, wangymHeight);
+        var wangymI;
+        for (wangymI = 0; wangymI < wangymParticles.length; wangymI++) {
+          var wangymP = wangymParticles[wangymI];
+          wangymP.x += wangymP.vx;
+          wangymP.y += wangymP.vy;
+          if (wangymP.x < 0 || wangymP.x > wangymWidth) { wangymP.vx *= -1; }
+          if (wangymP.y < 0 || wangymP.y > wangymHeight) { wangymP.vy *= -1; }
+          wangymCtx.beginPath();
+          wangymCtx.arc(wangymP.x, wangymP.y, wangymP.r, 0, Math.PI * 2);
+          wangymCtx.fillStyle = 'rgba(143, 208, 255, 0.85)';
+          wangymCtx.fill();
+        }
+        for (var wangymA = 0; wangymA < wangymParticles.length; wangymA++) {
+          for (var wangymB = wangymA + 1; wangymB < wangymParticles.length; wangymB++) {
+            var wangymPA = wangymParticles[wangymA];
+            var wangymPB = wangymParticles[wangymB];
+            var wangymGapX = wangymPA.x - wangymPB.x;
+            var wangymGapY = wangymPA.y - wangymPB.y;
+            var wangymGap = Math.sqrt(wangymGapX * wangymGapX + wangymGapY * wangymGapY);
+            if (wangymGap < 130) {
+              wangymCtx.beginPath();
+              wangymCtx.moveTo(wangymPA.x, wangymPA.y);
+              wangymCtx.lineTo(wangymPB.x, wangymPB.y);
+              wangymCtx.strokeStyle = 'rgba(0, 132, 255, ' + (0.3 * (1 - wangymGap / 130)).toFixed(3) + ')';
+              wangymCtx.lineWidth = 0.8;
+              wangymCtx.stroke();
+            }
+          }
+        }
+        window.requestAnimationFrame(wangymDraw);
+      }
+
+      wangymResize();
+      wangymCreate();
+      window.requestAnimationFrame(wangymDraw);
+      window.addEventListener('resize', function () {
+        wangymResize();
+        wangymCreate();
+      });
+      console.log('[wangym_docs] Pages 落地页已加载');
+    })();
+  </script>
+</body>
+</html>

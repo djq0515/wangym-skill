@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- 姓名：王一鸣 | 学号：24002060518 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据库连接测试 - 知乎制作和模仿</title>
+  <link rel="stylesheet" href="css/wangym_common.css" />
+  <link rel="stylesheet" href="css/wangym_pages.css" />
+</head>
+<body>
+  <header class="wangym_header">
+    <a class="wangym_logo" href="index.html">
+      <span class="wangym_logo_mark">知</span>
+      <span>知乎制作和模仿</span>
+    </a>
+    <nav class="wangym_header_nav">
+      <a class="wangym_header_link" href="index.html">首页</a>
+      <a class="wangym_header_link is_active" href="database.html">数据库测试</a>
+      <a class="wangym_header_link" href="news.html">科技新闻</a>
+      <a class="wangym_header_link" href="gallery.html">图文列表</a>
+    </nav>
+  </header>
+
+  <main class="wangym_main">
+    <div class="wangym_page_head" style="text-align: center;">
+      <h1 class="wangym_page_title">MySQL 数据库连接测试</h1>
+      <p class="wangym_page_desc">输入账号密码后由后端实时连接数据库，并返回连接结果。</p>
+    </div>
+
+    <div class="wangym_api_bar" style="justify-content: center;">
+      <strong>后端接口：</strong>
+      <a href="http://localhost:8201/api/database/test" target="_blank" rel="noopener">
+        <code>http://localhost:8201/api/database/test</code>
+      </a>
+      <span>|</span>
+      <span>POST</span>
+    </div>
+
+    <section class="wangym_card wangym_db_card">
+      <form id="wangym_db_form" class="wangym_form">
+        <div class="wangym_field">
+          <label class="wangym_label" for="wangym_username">用户名</label>
+          <input class="wangym_input" id="wangym_username" name="username" type="text" value="root" autocomplete="username" />
+        </div>
+        <div class="wangym_field">
+          <label class="wangym_label" for="wangym_password">密码</label>
+          <input class="wangym_input" id="wangym_password" name="password" type="password" value="123456" autocomplete="current-password" />
+        </div>
+        <div class="wangym_field">
+          <label class="wangym_label" for="wangym_database">数据库名</label>
+          <input class="wangym_input" id="wangym_database" name="database" type="text" value="wangym_zhihu" />
+        </div>
+        <button class="wangym_btn" id="wangym_db_submit" type="submit">连接数据库</button>
+      </form>
+
+      <div id="wangym_db_state" class="wangym_state"></div>
+
+      <p class="wangym_db_tips">
+        提示：默认账号为 root / 123456，默认数据库为 wangym_zhihu。连接结果同时会输出到浏览器控制台（Console）。
+      </p>
+    </section>
+  </main>
+
+  <footer class="wangym_footer">
+    姓名：王一鸣 | 学号：24002060518 | 项目：知乎制作和模仿（模仿）
+  </footer>
+
+  <script src="js/wangym_database.js"></script>
+</body>
+</html>
